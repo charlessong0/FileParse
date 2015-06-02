@@ -90,6 +90,8 @@ public class ReadXML {
 	System.out.println(detail2.getAttributes().getNamedItem("value").getTextContent());
 	System.out.println(detail2.getNodeName());
 	System.out.println(detail2.getTextContent());
+	if (detail2.getTextContent().equals(""))
+		System.out.println("empty!!!!!!");
 	System.out.println(childnodes2.getLength());
 	
 	System.out.println("this is the end of the test");
