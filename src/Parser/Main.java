@@ -17,7 +17,7 @@ public class Main {
 		System.out.println(fr.fromCSVLinetoArray(null));
 		System.out.println(fr.fromCSVLinetoArray(fr.readLine()));
 		
-		ReadXML rd = new ReadXML("C:\\Users\\znsong\\Documents\\My Received Files\\test.xml");
+		ReadXML rd = new ReadXML("C:\\Users\\znsong\\Documents\\My Received Files\\structure.xml");
 		
 	}
 
