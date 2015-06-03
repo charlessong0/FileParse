@@ -139,6 +139,7 @@ public class ReadXML {
 					column.setUpper(upper);
 					column.setLower(lower);
 				}
+				
 			}
 			readFile.setValidation(validation);
 			
