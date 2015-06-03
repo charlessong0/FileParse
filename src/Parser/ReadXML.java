@@ -11,17 +11,17 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import objects.ColumnVal;
+import objects.FileSample;
+import objects.Structure;
+import objects.Table;
+import objects.Validation;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import Objects.ColumnVal;
-import Objects.FileSample;
-import Objects.Structure;
-import Objects.Table;
-import Objects.Validation;
 
 
 public class ReadXML {

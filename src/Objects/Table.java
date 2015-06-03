@@ -1,4 +1,4 @@
-package Objects;
+package objects;
 
 public class Table {
 	private boolean hasTitle = false;
