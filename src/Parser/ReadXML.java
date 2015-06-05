@@ -1,10 +1,7 @@
 package Parser;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -33,7 +30,7 @@ public class ReadXML {
 	private Element root = null;
 	private Error error = new Error();
 	private ArrayList<FileSample> fileList = new ArrayList<FileSample>();
-	 
+	
 	public ReadXML(String filepath) {
 		/*
 		setFilepath(filepath);
@@ -78,13 +75,12 @@ public class ReadXML {
 		setDoc(this.db);
 		setRoot(this.doc);
 		
-		//System.out.println(root.getNodeName());
+		System.out.println(root.getNodeName());
 		NodeList files = root.getChildNodes();
-		//System.out.println(files.item(5).getNodeName());
-		//System.out.println(files.getLength());
+		System.out.println(files.item(5).getNodeName());
+		System.out.println(files.getLength());
 		
 		// read file list
-		ArrayList<FileSample> fileList = new ArrayList<FileSample>();
 		for (int i = 1; i <= getNum(files.getLength()); i++) {
 			//System.out.println(i);
 			Node file = files.item(setNum(i));
@@ -92,7 +88,7 @@ public class ReadXML {
 			NodeList innerFile = file.getChildNodes();
 			readFile.setFileType(file.getTextContent());
 			
-			//set file type - done
+			//set file type
 			Node fileType = innerFile.item(setNum(1));
 			//System.out.println(fileType.getTextContent());
 			readFile.setFileType(fileType.getTextContent());
@@ -102,7 +98,8 @@ public class ReadXML {
 			Node fileStructure = innerFile.item(setNum(2));
 			//System.out.println(fileStructure.getNodeName());
 			NodeList structureList = fileStructure.getChildNodes();
-			for (int j = 1; j <= getNum(structureList.getLength()); j++) {
+			int structureLength = getNum(structureList.getLength());
+			for (int j = 1; j <= structureLength; j++) {
 				Node structureInfo = structureList.item(setNum(j));
 				//System.out.println(structureInfo.getTextContent());
 				if ("fileheader".equals(structureInfo.getNodeName())) {
@@ -183,7 +180,7 @@ public class ReadXML {
 				Node fileColumn = validationColumn.item(setNum(j));
 				ColumnVal column = new ColumnVal();
 				
-				//System.out.println(fileColumn.getNodeName());
+				System.out.println(fileColumn.getNodeName());
 				
 				if ("true".equals(fileColumn.getAttributes().getNamedItem("required").getTextContent()))
 					column.setRequired(true);
@@ -210,7 +207,7 @@ public class ReadXML {
 	
 	public ArrayList<FileSample> getFileList() {
 		return fileList;
-	}	
+	}
 	 
 // those are private methods
 	 
