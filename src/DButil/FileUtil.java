@@ -29,13 +29,13 @@ public class FileUtil {
 	 * get the list of all batches
 	 * allBatches - batchList - batch
 	 */
-	public List<List<List<String>>> readInBatch() throws Exception {
+	public ArrayList<ArrayList<ArrayList<String>>> readInBatch() throws Exception {
 		String readLine = null;
 		int lineLength = 0;
 		boolean inBatch = false;
-		ArrayList<List<String>> batchList = new ArrayList<List<String>>();
+		ArrayList<ArrayList<String>> batchList = new ArrayList<ArrayList<String>>();
 		ArrayList<String> batch = new ArrayList<String>();
-		ArrayList<List<List<String>>> allBatches = new ArrayList<List<List<String>>>();
+		ArrayList<ArrayList<ArrayList<String>>> allBatches = new ArrayList<ArrayList<ArrayList<String>>>();
 		
 		while(true) {
 			readLine = fr.readLine();
@@ -49,7 +49,7 @@ public class FileUtil {
 						batchList.add(batch);
 						allBatches.add(batchList);
 						inBatch = false;
-						batchList = new ArrayList<List<String>>();
+						batchList = new ArrayList<ArrayList<String>>();
 					}
 					else {
 						batchList.add(batch);
