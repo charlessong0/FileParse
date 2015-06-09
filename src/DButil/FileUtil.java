@@ -82,24 +82,23 @@ public class FileUtil {
 	}
 	
 	
-	// those are private methods
 	/*
 	 * judge the exact batch header
 	 */
-	private boolean exactBatch() {
+	public boolean exactBatch() {
 		boolean exactBatch = false;
 		
 		return exactBatch;
 	}
 	
-	private boolean isBatch(ArrayList<String> batch) {
+	public boolean isBatch(ArrayList<String> batch) {
 		boolean isBatch = false;
 		if (batch.get(0).equals(structure.getBatchHeader()))
 			isBatch = true;		
 		return isBatch;
 	}
 	
-	private boolean isBatchFooter(ArrayList<String> batch) {
+	public boolean isBatchFooter(ArrayList<String> batch) {
 		boolean isFooter = false;
 		if (batch.get(0).equals(structure.getBatchFooter()))
 			isFooter = true;

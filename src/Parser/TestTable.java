@@ -3,6 +3,7 @@ package Parser;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import dbutil.FileUtil;
 import objects.FileSample;
 import objects.Structure;
 import objects.Table;
@@ -14,12 +15,14 @@ public class TestTable {
 
 	public String getTable() throws Exception {
 		//FileReader fr = new FileReader("C:\\Users\\znsong\\Documents\\My Received Files\\US-eBay-EOM-Fees@ebay.com.TRR-20140702.01.008.csv");
-		//FileReader fr = new FileReader("C:\\Users\\znsong\\Documents\\My Received Files\\MVX5N5KZ9CTX8_results_2014-05-15-446.csv");
-		FileReader fr = new FileReader("C:\\Users\\znsong\\Documents\\My Received Files\\US-eBay-EOM-Fees@ebay.com.TRR-20140702.01.008.csv");
+		FileReader fr = new FileReader("C:\\Users\\znsong\\Documents\\My Received Files\\MVX5N5KZ9CTX8_results_2014-05-15-446.csv");
+		//FileReader fr = new FileReader("C:\\Users\\znsong\\Documents\\My Received Files\\MVX5N5KZ9CTX8_receipt_2014-05-15-446.csv");
+		//FileReader fr = new FileReader("C:\\Users\\znsong\\Documents\\My Received Files\\US-eBay-EOM-Fees@ebay.com.TRR-20140702.01.008.csv");
 		ReadXML readXML = new ReadXML("C:\\Users\\znsong\\Documents\\My Received Files\\structure.xml");
 		ArrayList<FileSample> fileList = readXML.getFileList();
-		FileSample file = fileList.get(0);
+		FileSample file = fileList.get(2);
 		Validation validation = file.getValidation();
+		
 		
 		String readLine = "";
 		int lineLength = 0;
@@ -41,6 +44,45 @@ public class TestTable {
 		String content = structure.getContent();
 		ArrayList templateTitle = new ArrayList();
 		
+		
+		/*
+		FileUtil fu = new FileUtil("C:\\Users\\znsong\\Documents\\My Received Files\\MVX5N5KZ9CTX8_receipt_2014-05-15-446.csv");
+		fu.setStructure(structure);
+		ArrayList<ArrayList<ArrayList<String>>> fileInBatch = fu.readInBatch();
+		Iterator<ArrayList<ArrayList<String>>> batchIt = fileInBatch.iterator();
+		ArrayList<ArrayList<String>> batch = null;
+		ArrayList<String> contentLine = null;
+		Iterator<String> contentIt = null;
+		int batchLength = 0;
+		int contentLength = 0;
+		
+		if (!hasTitle) {
+				tableStr += "<tr>";
+				batch = batchIt.next();
+				batch = batchIt.next();
+				batch = batchIt.next();
+				batchLength = batch.size();
+				
+				for (int i = 1; i < batchLength - 1; i++) {
+					contentLine = batch.get(i);
+					contentIt = contentLine.iterator();
+					while (contentIt.hasNext()) {
+						tableStr += "<td>";
+						tableStr += contentIt.next();
+						tableStr += "</td>";
+					}
+				
+				}
+				
+				tableStr += "</tr>";
+			System.out.println(tableStr);
+		}
+		else {
+			
+		}
+		
+		*/
+
 		//if there is existing title in the file, we can just use it and do not have to read title in XML template
 		if (hasTitle) {
 			while (true) {
@@ -198,7 +240,7 @@ public class TestTable {
 				//System.out.println(tableStr);
 			}
 		}
-		
+
 		
 		//System.out.println(tableStr);
 		return tableStr;

@@ -180,7 +180,7 @@ public class ReadXML {
 				Node fileColumn = validationColumn.item(setNum(j));
 				ColumnVal column = new ColumnVal();
 				
-				System.out.println(fileColumn.getNodeName());
+				//System.out.println(fileColumn.getNodeName());
 				
 				if ("true".equals(fileColumn.getAttributes().getNamedItem("required").getTextContent()))
 					column.setRequired(true);
