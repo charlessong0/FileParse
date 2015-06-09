@@ -26,12 +26,12 @@ public class Main {
 		TestTable tt = new TestTable();
 		tt.getTable();
 		
-		Structure structure = rd.getFileList().get(0).getStructure();
+		Structure structure = rd.getFileList().get(2).getStructure();
 		System.out.println(structure.getBatchFooter());
-		FileUtil fu = new FileUtil("C:\\Users\\znsong\\Documents\\My Received Files\\US-eBay-EOM-Fees@ebay.com.TRR-20140702.01.008.csv");
+		FileUtil fu = new FileUtil("C:\\Users\\znsong\\Documents\\My Received Files\\MVX5N5KZ9CTX8_receipt_2014-05-15-446.csv");
 		fu.setStructure(structure);
 		ArrayList<ArrayList<ArrayList<String>>> fileInBatch = fu.readInBatch();
-		System.out.println(fileInBatch.get(0).get(0).get(1));
+		System.out.println(fileInBatch.get(3).get(2111).get(2));
 	}
 
 }
