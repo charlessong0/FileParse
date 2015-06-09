@@ -16,37 +16,56 @@ public class FileUtil {
 		fr = new FileReader(this.path);
 	}
 	
+	/*
+	 * get the batch in ArrayList through batchID or batchTime
+	 */
 	public List<String> getBatch(String BH, String batchID, String batchTime) {
 		ArrayList<String> batchList = new ArrayList<String>();
-		
-		
+
 		return batchList;
 	}
 	
-	public List<List<String>> readInBatch() throws Exception {
+	/*
+	 * get the list of all batches
+	 * allBatches - batchList - batch
+	 */
+	public List<List<List<String>>> readInBatch() throws Exception {
 		String readLine = null;
 		int lineLength = 0;
-		boolean firstBatch = true;
+		boolean inBatch = false;
 		ArrayList<List<String>> batchList = new ArrayList<List<String>>();
 		ArrayList<String> batch = new ArrayList<String>();
+		ArrayList<List<List<String>>> allBatches = new ArrayList<List<List<String>>>();
 		
 		while(true) {
 			readLine = fr.readLine();
-			lineLength = fr.fromCSVLinetoArray(readLine).size();
+			batch = fr.fromCSVLinetoArray(readLine);
+			lineLength = batch.size();
 			if (lineLength == 0)
 				break;
 			else {
-				if (firstBatch) {
-					
-					
-					firstBatch = false;
+				if (inBatch) {
+					if(isBatchFooter(batch)) {
+						batchList.add(batch);
+						allBatches.add(batchList);
+						inBatch = false;
+						batchList = new ArrayList<List<String>>();
+					}
+					else {
+						batchList.add(batch);
+					}
 				}
 				else {
-					
+					if (isBatch(batch)) {
+						batchList.add(batch);
+						inBatch = true;
+					}
+					else
+						continue;
 				}
 			}
 		}
-		return batchList;
+		return allBatches;
 	}
 	
 	
@@ -73,9 +92,17 @@ public class FileUtil {
 		return exactBatch;
 	}
 	
-	private boolean isBatch() {
+	private boolean isBatch(ArrayList<String> batch) {
 		boolean isBatch = false;
-		
+		if (batch.get(0).equals(structure.getBatchHeader()))
+			isBatch = true;		
 		return isBatch;
+	}
+	
+	private boolean isBatchFooter(ArrayList<String> batch) {
+		boolean isFooter = false;
+		if (batch.get(0).equals(structure.getBatchFooter()))
+			isFooter = true;
+		return isFooter;
 	}
 }
