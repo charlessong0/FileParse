@@ -105,7 +105,7 @@ public class FileUtil {
 		ArrayList<String> header = batch.get(0);
 		ArrayList<String> footer = batch.get(length-1);
 		if (length < 100) {
-			get100Batch(allBatches, batchNumber, pageIndex);
+			return get100Batch(allBatches, batchNumber, 1);
 		}
 		else {
 			if ((pageIndex-1)*200 > length) {
@@ -134,8 +134,8 @@ public class FileUtil {
 				}
 				get200.add(footer);
 			}
+			return get200;
 		}
-		return get200;
 	}
 	
 	/*
@@ -149,7 +149,7 @@ public class FileUtil {
 		ArrayList<String> header = batch.get(0);
 		ArrayList<String> footer = batch.get(length-1);
 		if (length < 50) {
-			get50Batch(allBatches, batchNumber, pageIndex);
+			return get50Batch(allBatches, batchNumber, 1);
 		}
 		else {
 			if ((pageIndex-1)*100 > length) {
@@ -178,8 +178,8 @@ public class FileUtil {
 				}
 				get100.add(footer);
 			}
+			return get100;
 		}
-		return get100;
 	}
 	
 	/*
@@ -203,6 +203,7 @@ public class FileUtil {
 					get50.add(batch.get(i));
 				}
 				get50.add(footer);
+				
 			}
 			else {
 				get50.add(header);
@@ -219,6 +220,7 @@ public class FileUtil {
 			}
 			get50.add(footer);
 		}
+		System.out.println(get50.get(2));
 		return get50;
 	}
 	
