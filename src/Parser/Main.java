@@ -37,9 +37,8 @@ public class Main {
 		ArrayList<ArrayList<ArrayList<String>>> fileInBatch = fu.readInBatch();
 		System.out.println(fileInBatch.get(3).get(2111).get(2));
 		
-		ArrayList<ArrayList<String>> get200 = fu.get100Batch(fileInBatch, 1, 1);
-		System.out.println(get200.get(0));
+		ArrayList<ArrayList<String>> get200 = fu.get50Batch(fileInBatch,2, 3);
+		System.out.println(get200.size());
 		
 	}
-
 }

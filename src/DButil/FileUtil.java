@@ -111,25 +111,16 @@ public class FileUtil {
 			if ((pageIndex-1)*200 > length) {
 				err.err(31);
 			}
-			else if (pageIndex == 1) {
-				if (length <= 200) {
-					get200.add(header);
-					for (int i = 1; i <= length; i++) {
-						get200.add(batch.get(i));
-					}
-					get200.add(footer);
+			if (length <= pageIndex*200) {
+				get200.add(header);
+				for (int i = (pageIndex-1)*200; i <= length; i++) {
+					get200.add(batch.get(i));
 				}
-				else {
-					get200.add(header);
-					for (int i = 1; i <= 200; i++) {
-						get200.add(batch.get(i));
-					}
-					get200.add(footer);
-				}
+				get200.add(footer);
 			}
 			else {
 				get200.add(header);
-				for (int i = (pageIndex-1)*200; i < pageIndex*200; i++) {
+				for (int i = (pageIndex-1)*200 + 1; i <= pageIndex*200; i++) {
 					get200.add(batch.get(i));
 				}
 				get200.add(footer);
@@ -155,28 +146,21 @@ public class FileUtil {
 			if ((pageIndex-1)*100 > length) {
 				err.err(31);
 			}
-			else if (pageIndex == 1) {
-				if (length <= 100) {
+			else {
+				if (length <= pageIndex*100) {
 					get100.add(header);
-					for (int i = 1; i <= length; i++) {
+					for (int i = (pageIndex-1)*100; i <= length; i++) {
 						get100.add(batch.get(i));
 					}
 					get100.add(footer);
 				}
 				else {
 					get100.add(header);
-					for (int i = 1; i <= 100; i++) {
+					for (int i = (pageIndex-1)*100 + 1; i <= pageIndex*100; i++) {
 						get100.add(batch.get(i));
 					}
 					get100.add(footer);
 				}
-			}
-			else {
-				get100.add(header);
-				for (int i = (pageIndex-1)*100; i < pageIndex*100; i++) {
-					get100.add(batch.get(i));
-				}
-				get100.add(footer);
 			}
 			return get100;
 		}
@@ -196,26 +180,16 @@ public class FileUtil {
 		if ((pageIndex-1)*50 > length) {
 			err.err(31);
 		}
-		else if (pageIndex == 1) {
-			if (length <= 50) {
-				get50.add(header);
-				for (int i = 1; i <= length; i++) {
-					get50.add(batch.get(i));
-				}
-				get50.add(footer);
-				
+		if (length <= pageIndex*50) {
+			get50.add(header);
+			for (int i = (pageIndex-1)*50; i <= length; i++) {
+				get50.add(batch.get(i));
 			}
-			else {
-				get50.add(header);
-				for (int i = 1; i <= 50; i++) {
-					get50.add(batch.get(i));
-				}
-				get50.add(footer);
-			}
+			get50.add(footer);
 		}
 		else {
 			get50.add(header);
-			for (int i = (pageIndex-1)*50; i < pageIndex*50; i++) {
+			for (int i = (pageIndex-1)*50 + 1; i <= pageIndex*50; i++) {
 				get50.add(batch.get(i));
 			}
 			get50.add(footer);
