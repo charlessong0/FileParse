@@ -11,6 +11,7 @@ public class Error {
 		//13 table
 		//14 validation
 		//21 no such batch header in the file
+		//31 page index out of bound
 	}
 
 }

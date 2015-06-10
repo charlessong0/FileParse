@@ -1,15 +1,17 @@
 package dbutil;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 
 import objects.Structure;
 import Parser.FileReader;
+import Parser.Error;
 
 public class FileUtil {
 	private FileReader fr;
 	private String path = null;
 	private Structure structure = null;
+	public Error err;
 	
 	public FileUtil(String path) throws Exception {
 		this.path = path;
@@ -17,17 +19,8 @@ public class FileUtil {
 	}
 	
 	/*
-	 * get the batch in ArrayList through batchID or batchTime
-	 */
-	public List<String> getBatch(String BH, String batchID, String batchTime) {
-		ArrayList<String> batchList = new ArrayList<String>();
-
-		return batchList;
-	}
-	
-	/*
 	 * get the list of all batches
-	 * allBatches - batchList - batch
+	 * allBatches: the list of bathes - batchList: the list of a batch - batch: the list of a single line in list
 	 */
 	public ArrayList<ArrayList<ArrayList<String>>> readInBatch() throws Exception {
 		String readLine = null;
@@ -68,7 +61,169 @@ public class FileUtil {
 		return allBatches;
 	}
 	
+	/*
+	 * get the list of batches - batch headers in line
+	 */
+	public ArrayList<ArrayList<String>> getBatchNames(ArrayList<ArrayList<ArrayList<String>>> allBatches) {
+		ArrayList<ArrayList<String>> batchNames = new ArrayList<ArrayList<String>>();
+		Iterator<ArrayList<ArrayList<String>>> batchIt = allBatches.iterator();
+		while (batchIt.hasNext()) {
+			batchNames.add(batchIt.next().get(0));
+		}
+		return batchNames;
+	}
 	
+	/*
+	 * get a exact batch
+	 */
+	public ArrayList<ArrayList<String>> getABatch(ArrayList<ArrayList<ArrayList<String>>> allBatches, int index) {
+		return allBatches.get(index);
+	}
+	
+	/*
+	 * get the length of a batch, regardless of header and footer
+	 */
+	public int getBatchLength(ArrayList<ArrayList<String>> batch) {
+		return batch.size()-2;
+	}
+	
+	/*
+	 * get the index of pages
+	 */
+	public int getPageIndex(int batchLength, int lines) {
+		return batchLength/lines;
+	}
+	
+	/*
+	 * get 200 lines of batch, if there are less, call 100 method
+	 * the first line would be the batch header and the last would be the footer
+	 */
+	public ArrayList<ArrayList<String>> get200Batch(ArrayList<ArrayList<ArrayList<String>>> allBatches, int batchNumber, int pageIndex) {
+		ArrayList<ArrayList<String>> get200 = new ArrayList<ArrayList<String>>();
+		ArrayList<ArrayList<String>> batch = allBatches.get(batchNumber);
+		int length = getBatchLength(batch);
+		ArrayList<String> header = batch.get(0);
+		ArrayList<String> footer = batch.get(length-1);
+		if (length < 100) {
+			get100Batch(allBatches, batchNumber, pageIndex);
+		}
+		else {
+			if ((pageIndex-1)*200 > length) {
+				err.err(31);
+			}
+			else if (pageIndex == 1) {
+				if (length <= 200) {
+					get200.add(header);
+					for (int i = 1; i <= length; i++) {
+						get200.add(batch.get(i));
+					}
+					get200.add(footer);
+				}
+				else {
+					get200.add(header);
+					for (int i = 1; i <= 200; i++) {
+						get200.add(batch.get(i));
+					}
+					get200.add(footer);
+				}
+			}
+			else {
+				get200.add(header);
+				for (int i = (pageIndex-1)*200; i < pageIndex*200; i++) {
+					get200.add(batch.get(i));
+				}
+				get200.add(footer);
+			}
+		}
+		return get200;
+	}
+	
+	/*
+	 * get 100 lines of batch, if there are less, call 100 method
+	 * the first line would be the batch header and the last would be the footer
+	 */
+	public ArrayList<ArrayList<String>> get100Batch(ArrayList<ArrayList<ArrayList<String>>> allBatches, int batchNumber, int pageIndex) {
+		ArrayList<ArrayList<String>> get100 = new ArrayList<ArrayList<String>>();
+		ArrayList<ArrayList<String>> batch = allBatches.get(batchNumber);
+		int length = getBatchLength(batch);
+		ArrayList<String> header = batch.get(0);
+		ArrayList<String> footer = batch.get(length-1);
+		if (length < 50) {
+			get50Batch(allBatches, batchNumber, pageIndex);
+		}
+		else {
+			if ((pageIndex-1)*100 > length) {
+				err.err(31);
+			}
+			else if (pageIndex == 1) {
+				if (length <= 100) {
+					get100.add(header);
+					for (int i = 1; i <= length; i++) {
+						get100.add(batch.get(i));
+					}
+					get100.add(footer);
+				}
+				else {
+					get100.add(header);
+					for (int i = 1; i <= 100; i++) {
+						get100.add(batch.get(i));
+					}
+					get100.add(footer);
+				}
+			}
+			else {
+				get100.add(header);
+				for (int i = (pageIndex-1)*100; i < pageIndex*100; i++) {
+					get100.add(batch.get(i));
+				}
+				get100.add(footer);
+			}
+		}
+		return get100;
+	}
+	
+	/*
+	 * get 50 lines of batch, if there are less, call 100 method
+	 * the first line would be the batch header and the last would be the footer
+	 */
+	public ArrayList<ArrayList<String>> get50Batch(ArrayList<ArrayList<ArrayList<String>>> allBatches, int batchNumber, int pageIndex) {
+		ArrayList<ArrayList<String>> get50 = new ArrayList<ArrayList<String>>();
+		ArrayList<ArrayList<String>> batch = allBatches.get(batchNumber);
+		int length = getBatchLength(batch);
+		ArrayList<String> header = batch.get(0);
+		ArrayList<String> footer = batch.get(length-1);
+
+		if ((pageIndex-1)*50 > length) {
+			err.err(31);
+		}
+		else if (pageIndex == 1) {
+			if (length <= 50) {
+				get50.add(header);
+				for (int i = 1; i <= length; i++) {
+					get50.add(batch.get(i));
+				}
+				get50.add(footer);
+			}
+			else {
+				get50.add(header);
+				for (int i = 1; i <= 50; i++) {
+					get50.add(batch.get(i));
+				}
+				get50.add(footer);
+			}
+		}
+		else {
+			get50.add(header);
+			for (int i = (pageIndex-1)*50; i < pageIndex*50; i++) {
+				get50.add(batch.get(i));
+			}
+			get50.add(footer);
+		}
+		return get50;
+	}
+	
+	//getters and setters
+
 	public String getPath() {
 		return path;
 	}
@@ -81,16 +236,7 @@ public class FileUtil {
 		this.structure = structure;
 	}
 	
-	
-	/*
-	 * judge the exact batch header
-	 */
-	public boolean exactBatch() {
-		boolean exactBatch = false;
-		
-		return exactBatch;
-	}
-	
+	//examinations
 	public boolean isBatch(ArrayList<String> batch) {
 		boolean isBatch = false;
 		if (batch.get(0).equals(structure.getBatchHeader()))
