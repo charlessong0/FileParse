@@ -47,7 +47,7 @@ public class Main {
 		if (true) {
 			System.out.println("~~~~~~~~~~~~~~Fixed~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			ReadFixedXML fix = new ReadFixedXML("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
-			fix.getFileList().get(0).getTable().header.getEndList();
+			System.out.println(fix.getFileList().get(0).getTable().getTitleList());
 		}
 	}
 }

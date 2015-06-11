@@ -163,7 +163,8 @@ public class ReadFixedXML {
 					error.err(13);
 				//System.out.println(table.getHasTitle());
 			}
-			readFile.setTable(table);;
+			readFile.setTable(table);
+			fileList.add(readFile);
 			
 			
 //			//set file validation - done
