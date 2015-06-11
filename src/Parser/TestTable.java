@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import dbutil.FileReaderCSV;
-import dbutil.FileUtil;
+import dbutil.FileUtilCSV;
 import dbutil.ReadCSVXML;
 import objects.FileSample;
 import objects.Structure;
