@@ -1,12 +1,12 @@
 package dbutil;
 
-import java.io.BufferedReader;  
-import java.io.FileInputStream;  
-import java.io.InputStreamReader;  
-import java.util.ArrayList;  
-  
-public class FileReader {  
-    // CSV encode 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+public class FileReaderFixed {
+    // file encode 
     public static final String ENCODE = "UTF-8";  
   
     private FileInputStream fis = null;  
@@ -14,25 +14,23 @@ public class FileReader {
     private BufferedReader br = null;  
   
      
-    public FileReader(String filename) throws Exception {  
+    public FileReaderFixed(String filename) throws Exception {  
         fis = new FileInputStream(filename);  
         isw = new InputStreamReader(fis, ENCODE);  
         br = new BufferedReader(isw);  
     }  
-  
+    
     // =========Public Methods=============================  
     /** 
-     * Read a line from the CSV file
+     * Read a line from the fixed file
      * 
      * @throws Exception 
      */  
     public String readLine() throws Exception {  
-  
         StringBuffer readLine = new StringBuffer();  
         boolean bReadNext = true;  
   
         while (bReadNext) {  
-            //  
             if (readLine.length() > 0) {  
                 readLine.append("\r\n");  
             }  
@@ -44,16 +42,14 @@ public class FileReader {
                 return null;  
             }  
             readLine.append(strReadLine);  
-  
-            // if the number of comma is odd, continue reading -- take the line feeding into consideration
-            if (countChar(readLine.toString(), '"', 0) % 2 == 1) {  
-                bReadNext = true;  
-            } else {  
-                bReadNext = false;  
-            }  
         }  
         return readLine.toString();  
     }
+    
+    /**
+     * store a line into array, using the template structure
+     */
+    
 
     /** 
      * store a line into array, set the length and fill the empty slot with NULL values
@@ -203,4 +199,5 @@ public class FileReader {
         sb.append('"');  
         return sb.toString();  
     }  
-}  
+
+}
