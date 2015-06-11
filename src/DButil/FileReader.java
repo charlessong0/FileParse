@@ -1,4 +1,4 @@
-package Parser;
+package dbutil;
 
 import java.io.BufferedReader;  
 import java.io.FileInputStream;  

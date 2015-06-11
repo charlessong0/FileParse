@@ -1,4 +1,4 @@
-package Parser;
+package dbutil;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,8 +20,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import Parser.Error;
 
-public class ReadXML {
+
+public class ReadCSVXML {
 	private String filepath = "";
 	private DocumentBuilder db= null;
 	private DocumentBuilderFactory dbf= null;
@@ -31,7 +33,7 @@ public class ReadXML {
 	private Error error = new Error();
 	private ArrayList<FileSample> fileList = new ArrayList<FileSample>();
 	
-	public ReadXML(String filepath) {
+	public ReadCSVXML(String filepath) {
 		/*
 		setFilepath(filepath);
 		System.out.println(this.filepath);
@@ -146,6 +148,12 @@ public class ReadXML {
 				}
 				else if ("uploadtime".equals(tableInfo.getNodeName())) {
 					table.setUpdateTime(tableInfo.getTextContent());
+				}
+				else if ("totallength".equals(tableInfo.getNodeName())) {
+					if ("".equals(tableInfo.getTextContent())) 
+						table.setTotalLength(0);
+					else 
+						table.setTotalLength(Integer.parseInt(tableInfo.getTextContent()));
 				}
 				//title - set column names in the table
 				else if ("title".equals(tableInfo.getNodeName())) {

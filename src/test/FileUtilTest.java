@@ -1,7 +1,7 @@
 package test;
 
-import Parser.FileReader;
-import Parser.ReadXML;
+import dbutil.FileReader;
+import dbutil.ReadCSVXML;
 import Parser.TestTable;
 
 public class FileUtilTest {
@@ -35,7 +35,7 @@ public class FileUtilTest {
 	}
 	
 	public void testXML() {
-		ReadXML rd = new ReadXML("C:\\Users\\znsong\\Documents\\My Received Files\\structure.xml");
+		ReadCSVXML rd = new ReadCSVXML("C:\\Users\\znsong\\Documents\\My Received Files\\structure.xml");
 	}
 	
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import objects.Structure;
-import Parser.FileReader;
 import Parser.Error;
 
 public class FileUtil {
