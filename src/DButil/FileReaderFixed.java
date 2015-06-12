@@ -73,8 +73,9 @@ public class FileReaderFixed {
      * 
      * @throws Exception 
      */  
-    public String readLine() throws Exception {  
-        return br.readLine();
+    public String readLine() throws Exception {
+    	String temp = br.readLine();
+        return temp;
     }
     
     /**

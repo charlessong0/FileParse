@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import objects.Structure;
 import dbutil.FileReaderFixed;
 import dbutil.FileUtilCSV;
+import dbutil.FileUtilFixed;
 import dbutil.ReadCSVXML;
 import dbutil.ReadFixedXML;
 
@@ -54,12 +55,17 @@ public class Main {
 		
 		ReadFixedXML fix = new ReadFixedXML("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
 		FileReaderFixed frf = new FileReaderFixed("C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt");
-		frf.setFileSample(fix.getFileList().get(0));
-		System.out.println(frf.getHasTitle());
-		System.out.println(frf.fromFixedLineToArray(frf.readLine(), false, true));
-		System.out.println(frf.fromFixedLineToArray(frf.readLine(), true, false));
-		System.out.println(frf.fromFixedLineToArray(frf.readLine(), false, false));
-		System.out.println(frf.readLine());
-		System.out.println(frf.readLine());
+		FileUtilFixed fuf = new FileUtilFixed("C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt",fix.getFileList().get(0));
+//		fuf.setFileSample(fix.getFileList().get(0)); 
+//		frf.setFileSample(fix.getFileList().get(0));
+		ArrayList test = fuf.readFile();
+		//System.out.println(test);
+//		System.out.println(frf.getHasTitle());
+//		System.out.println(frf.fromFixedLineToArray(frf.readLine(), false, true));
+//		System.out.println(frf.fromFixedLineToArray(frf.readLine(), true, false));
+//		//System.out.println(fuf.washString(frf.fromFixedLineToArray(frf.readLine(), false, false).get(2)));
+//		System.out.println(fuf.washArray(frf.fromFixedLineToArray(frf.readLine(), false, false)));
+//		System.out.println(frf.readLine());
+//		System.out.println(frf.readLine());
 	}
 }
