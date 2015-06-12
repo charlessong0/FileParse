@@ -13,4 +13,8 @@ public class FileUtilFixed {
 		this.path = path;
 		fr = new FileReaderCSV(this.path);
 	}
+	
+	public ArrayList readFile() {
+		
+	}
 }
