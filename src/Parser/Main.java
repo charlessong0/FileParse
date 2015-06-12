@@ -58,7 +58,9 @@ public class Main {
 		FileUtilFixed fuf = new FileUtilFixed("C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt",fix.getFileList().get(0));
 //		fuf.setFileSample(fix.getFileList().get(0)); 
 //		frf.setFileSample(fix.getFileList().get(0));
-		ArrayList test = fuf.readFile();
+		
+		System.out.println(fuf.getPage(50, 1));
+		
 		//System.out.println(test);
 //		System.out.println(frf.getHasTitle());
 //		System.out.println(frf.fromFixedLineToArray(frf.readLine(), false, true));

@@ -11,7 +11,6 @@ public class FileUtilFixed {
 	private FileReaderFixed fr;
 	private String path = null;
 	private FileSample fs = null;
-	private Structure structure = null;
 	public Error err;
 	
 	public FileUtilFixed(String path) throws Exception {
@@ -30,7 +29,6 @@ public class FileUtilFixed {
 	public void setFileSample(FileSample fs) {
 		this.fs = fs;
 		this.fr.setFileSample(fs);
-		this.structure = fs.getStructure();
 	}
 	
 	/**
@@ -82,11 +80,102 @@ public class FileUtilFixed {
 	}
 	
 	
+	/**
+	 * get number lines of content in one page on the pageIndex page.
+	 * not complete, assume that we will have header and tailer
+	 * @param fileArray
+	 * @param number
+	 * @param pageIndex
+	 * @return
+	 */
+	public ArrayList<ArrayList<String>> getPage(ArrayList<ArrayList<String>> fileArray, int number, int pageIndex) {
+		ArrayList<ArrayList<String>> onePage = new ArrayList<ArrayList<String>>();
+		//get header and tailer
+		boolean hasHeader = fr.getHasTitle();
+		boolean hasTailer = fr.getHasTailer();
+		int length = fileArray.size() - 2;
+		ArrayList<String> header = fileArray.get(0);
+		ArrayList<String> tailer = fileArray.get(length - 1);
+		
+		if (hasHeader && hasTailer) {
+			if ((pageIndex-1)*number > length) {
+				err.err(31);
+			}
+			if (length <= pageIndex*number) {
+				onePage.add(header);
+				for (int i = (pageIndex-1)*number; i <= length; i++) {
+					onePage.add(fileArray.get(i));
+				}
+				onePage.add(tailer);
+			}
+			else {
+				onePage.add(header);
+				for (int i = (pageIndex-1)*number + 1; i <= pageIndex*number; i++) {
+					onePage.add(fileArray.get(i));
+				}
+				onePage.add(tailer);
+			}
+		}
+		else if (hasHeader) {
+			
+		}
+		else if (hasTailer) {
+			
+		}
+		else {
+			
+		}
+		
+		return onePage;
+	}
+	
+	public ArrayList<ArrayList<String>> getPage(int number, int pageIndex) throws Exception {
+		ArrayList<ArrayList<String>> fileArray = readFile();
+		ArrayList<ArrayList<String>> onePage = new ArrayList<ArrayList<String>>();
+		//get header and tailer
+		boolean hasHeader = fr.getHasTitle();
+		boolean hasTailer = fr.getHasTailer();
+		int length = fileArray.size() - 2;
+		ArrayList<String> header = fileArray.get(0);
+		ArrayList<String> tailer = fileArray.get(length + 1);
+		
+		if (hasHeader && hasTailer) {
+			if ((pageIndex-1)*number > length) {
+				err.err(31);
+			}
+			if (length <= pageIndex*number) {
+				onePage.add(header);
+				for (int i = (pageIndex-1)*number; i <= length; i++) {
+					onePage.add(fileArray.get(i));
+				}
+				onePage.add(tailer);
+			}
+			else {
+				onePage.add(header);
+				for (int i = (pageIndex-1)*number + 1; i <= pageIndex*number; i++) {
+					onePage.add(fileArray.get(i));
+				}
+				onePage.add(tailer);
+			}
+		}
+		else if (hasHeader) {
+			
+		}
+		else if (hasTailer) {
+			
+		}
+		else {
+			
+		}
+		
+		return onePage;
+	}
+	
 	/*
 	 * those below are private methods
 	 */
 	
-	public ArrayList<String> washArray(ArrayList<String> array) {
+	private ArrayList<String> washArray(ArrayList<String> array) {
 		ArrayList<String> wash = new ArrayList<String>();
 		Iterator<String> it = array.iterator();
 		while(it.hasNext()) {
