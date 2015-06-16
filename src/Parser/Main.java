@@ -75,7 +75,9 @@ public class Main {
 		
 		CreateFixedTable cft = new CreateFixedTable("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml", "C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt");
 		System.out.println(cft.createTable(1, 20));
-		
+		//System.out.println(cft.getTailer());
+		System.out.println("~~~~~~~~~~~~~~");
+		System.out.println(cft.createTailerTable());
 		
 	}
 }
