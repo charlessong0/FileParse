@@ -2,6 +2,7 @@ package Parser;
 
 import java.util.ArrayList;
 
+import jsputil.CreateFixedTable;
 import objects.Structure;
 import dbutil.FileReaderFixed;
 import dbutil.FileUtilCSV;
@@ -53,21 +54,28 @@ public class Main {
 			System.out.println(fix.getFileList().get(0).getTable().getTitleList());
 		}
 		
-		ReadFixedXML fix = new ReadFixedXML("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
-		FileReaderFixed frf = new FileReaderFixed("C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt");
-		FileUtilFixed fuf = new FileUtilFixed("C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt",fix.getFileList().get(0));
-//		fuf.setFileSample(fix.getFileList().get(0)); 
-//		frf.setFileSample(fix.getFileList().get(0));
+		if (false) {
+			ReadFixedXML fix = new ReadFixedXML("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
+			FileReaderFixed frf = new FileReaderFixed("C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt");
+			FileUtilFixed fuf = new FileUtilFixed("C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt",fix.getFileList().get(0));
+//			fuf.setFileSample(fix.getFileList().get(0)); 
+//			frf.setFileSample(fix.getFileList().get(0));
+			
+			System.out.println(fuf.getPage(50, 1));
+			
+			//System.out.println(test);
+//			System.out.println(frf.getHasTitle());
+//			System.out.println(frf.fromFixedLineToArray(frf.readLine(), false, true));
+//			System.out.println(frf.fromFixedLineToArray(frf.readLine(), true, false));
+//			//System.out.println(fuf.washString(frf.fromFixedLineToArray(frf.readLine(), false, false).get(2)));
+//			System.out.println(fuf.washArray(frf.fromFixedLineToArray(frf.readLine(), false, false)));
+//			System.out.println(frf.readLine());
+//			System.out.println(frf.readLine());
+		}
 		
-		System.out.println(fuf.getPage(50, 1));
+		CreateFixedTable cft = new CreateFixedTable("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml", "C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt");
+		System.out.println(cft.createTable(1, 20));
 		
-		//System.out.println(test);
-//		System.out.println(frf.getHasTitle());
-//		System.out.println(frf.fromFixedLineToArray(frf.readLine(), false, true));
-//		System.out.println(frf.fromFixedLineToArray(frf.readLine(), true, false));
-//		//System.out.println(fuf.washString(frf.fromFixedLineToArray(frf.readLine(), false, false).get(2)));
-//		System.out.println(fuf.washArray(frf.fromFixedLineToArray(frf.readLine(), false, false)));
-//		System.out.println(frf.readLine());
-//		System.out.println(frf.readLine());
+		
 	}
 }
