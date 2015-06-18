@@ -177,7 +177,6 @@ public class ReadCSVXML {
 			}
 			readFile.setTable(table);;
 			
-			
 			//set file validation - done
 			Validation validation = new Validation();
 			Node fileValidation = innerFile.item(setNum(4));
