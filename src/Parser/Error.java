@@ -13,6 +13,7 @@ public class Error {
 		//21 no such batch header in the file
 		//31 page index out of bound
 		//40 empty fixed file
+		//50 file type mapping
 	}
 
 }

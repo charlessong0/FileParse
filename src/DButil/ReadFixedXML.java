@@ -228,6 +228,15 @@ public class ReadFixedXML {
 	public ArrayList<FileSample> getFileList() {
 		return fileList;
 	}
+	
+	public ArrayList<String> getFileType() {
+		ArrayList<String> typeList = new ArrayList<String>();
+		for (int i = 0; i < fileList.size(); i++) {
+			typeList.add(fileList.get(i).getFileType());
+		}
+		
+		return typeList;
+	}
 	 
 // those are private methods
 	 

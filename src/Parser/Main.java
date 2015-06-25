@@ -2,6 +2,7 @@ package Parser;
 
 import java.util.ArrayList;
 
+import control.FileTypeMapping;
 import jsputil.CreateFixedTable;
 import objects.Structure;
 import dbutil.FileReaderFixed;
@@ -33,6 +34,7 @@ public class Main {
 		if (false) {
 			System.out.println("~~~~~~~~~~~~~~CSV~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			ReadCSVXML rd = new ReadCSVXML("C:\\Users\\znsong\\Documents\\My Received Files\\structure.xml");
+			System.out.println(rd.getFileType() + "~~~~~");
 			
 			TestTable tt = new TestTable();
 			System.out.println(tt.getTable());
@@ -48,10 +50,11 @@ public class Main {
 			System.out.println(get200.size());
 		}
 		
-		if (false) {
+		if (true) {
 			System.out.println("~~~~~~~~~~~~~~Fixed~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			ReadFixedXML fix = new ReadFixedXML("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
 			System.out.println(fix.getFileList().get(0).getTable().getTitleList());
+			System.out.println(fix.getFileType());
 		}
 		
 		if (false) {
@@ -73,11 +76,12 @@ public class Main {
 //			System.out.println(frf.readLine());
 		}
 		
-		CreateFixedTable cft = new CreateFixedTable("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml", "C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt");
-		System.out.println(cft.createTable(1, 20));
-		//System.out.println(cft.getTailer());
-		System.out.println("~~~~~~~~~~~~~~");
-		System.out.println(cft.createTailerTable());
-		
+//		CreateFixedTable cft = new CreateFixedTable("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml", "C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt");
+//		System.out.println(cft.createTable(1, 20));
+//		//System.out.println(cft.getTailer());
+//		System.out.println("~~~~~~~~~~~~~~");
+//		System.out.println(cft.createTailerTable());
+		FileTypeMapping ftm = new FileTypeMapping("C:\\Users\\znsong\\Documents\\My Received Files\\structure.xml", "C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
+		System.out.println(ftm.getFileSample("GLOBAL_BIN_RANGE").getFileType());
 	}
 }
