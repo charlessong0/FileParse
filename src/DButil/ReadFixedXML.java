@@ -272,9 +272,10 @@ public class ReadFixedXML {
 			e.printStackTrace();
 		}
 	 }
-	 
+	  
 	 private void setRoot(Document doc) {
 		 this.root = doc.getDocumentElement();
+		 
 	 }
  
 	 /*
