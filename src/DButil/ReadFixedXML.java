@@ -89,7 +89,7 @@ public class ReadFixedXML {
 				}
 				else
 					error.err(12);
-			}
+			} 
 			readFile.setStructure(structure);
 			
 			//set file table - done
