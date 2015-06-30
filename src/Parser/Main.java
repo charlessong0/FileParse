@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import control.FileTypeMapping;
 import jsputil.CreateFixedTable;
+import jsputil.ResultUtil;
 import objects.Structure;
 import dbutil.FileReaderFixed;
 import dbutil.FileUtilCSV;
@@ -55,6 +56,9 @@ public class Main {
 			ReadFixedXML fix = new ReadFixedXML("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
 			System.out.println(fix.getFileList().get(0).getTable().getTitleList());
 			System.out.println(fix.getFileType());
+			ResultUtil ru = new ResultUtil();
+			ru.createTitleSelection(fix.getFileList().get(0).getTable());
+			System.out.println(ru.createTitleSelection(fix.getFileList().get(0).getTable()));
 		}
 		
 		if (false) {
@@ -81,7 +85,7 @@ public class Main {
 //		//System.out.println(cft.getTailer());
 //		System.out.println("~~~~~~~~~~~~~~");
 //		System.out.println(cft.createTailerTable());
-		FileTypeMapping ftm = new FileTypeMapping("C:\\Users\\znsong\\Documents\\My Received Files\\structure.xml", "C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
-		System.out.println(ftm.getFileSample("GLOBAL_BIN_RANGE").getFileType());
+		//FileTypeMapping ftm = new FileTypeMapping("C:\\Users\\znsong\\Documents\\My Received Files\\structure.xml", "C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
+		//System.out.println(ftm.getFileSample("GLOBAL_BIN_RANGE").getFileType());
 	}
 }
