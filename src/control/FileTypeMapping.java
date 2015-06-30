@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import dbutil.ReadCSVXML;
 import dbutil.ReadFixedXML;
+import error.Error;
 import objects.FileSample;
-import Parser.Error;
 
 public class FileTypeMapping {
 	private String csvTemplate;

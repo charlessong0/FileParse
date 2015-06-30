@@ -1,4 +1,4 @@
-package Parser;
+package error;
 
 public class Error {
 

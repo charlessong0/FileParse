@@ -3,9 +3,9 @@ package dbutil;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import error.Error;
 import objects.FileSample;
 import objects.Structure;
-import Parser.Error;
 
 public class FileUtilCSV {
 	private FileReaderCSV fr;

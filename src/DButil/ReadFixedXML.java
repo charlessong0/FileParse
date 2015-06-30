@@ -20,7 +20,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import Parser.Error;
+import error.Error;
 
 
 public class ReadFixedXML {
@@ -89,7 +89,7 @@ public class ReadFixedXML {
 				}
 				else
 					error.err(12);
-			} 
+			}
 			readFile.setStructure(structure);
 			
 			//set file table - done
