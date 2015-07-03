@@ -223,7 +223,7 @@ public class ReadFixedXML {
 //			
 //			fileList.add(readFile);
 		}
-	}
+	} 
 	
 	public ArrayList<FileSample> getFileList() {
 		return fileList;
