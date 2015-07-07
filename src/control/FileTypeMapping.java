@@ -43,7 +43,7 @@ public class FileTypeMapping {
 	
 	
 	/*
-	 * private methods for innerClass calculation
+	 * those are private methods
 	 */
 	
 	private int isInList(String str, ArrayList<String> list) {
