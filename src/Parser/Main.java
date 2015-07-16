@@ -65,7 +65,7 @@ public class Main {
 			ReadFixedXML fix = new ReadFixedXML("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
 			FileReaderFixed frf = new FileReaderFixed("C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt");
 			FileUtilFixed fuf = new FileUtilFixed("C:\\Users\\znsong\\Documents\\My Received Files\\KXCV00P.GB.GLOBAL.BIN.RANGE.G3586V00.txt",fix.getFileList().get(0));
-//			fuf.setFileSample(fix.getFileList().get(0)); 
+//			fuf.setFileSample(fix.getFileList().get(0));
 //			frf.setFileSample(fix.getFileList().get(0));
 			
 			System.out.println(fuf.getPage(50, 1));
