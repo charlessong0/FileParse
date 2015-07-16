@@ -35,7 +35,6 @@ public class ReadFixedXML {
 	
 	public ReadFixedXML(String filepath) {
 		setFilepath(filepath);
-		System.out.println(this.filepath);
 		setFile();
 		setDocumentBuilderFactory();
 		setDocumentBuilder();
@@ -88,7 +87,7 @@ public class ReadFixedXML {
 					structure.setContent(structureInfo.getTextContent());
 				}
 				else
-					error.err(12);
+					error.err(121);
 			}
 			readFile.setStructure(structure);
 			
@@ -162,7 +161,7 @@ public class ReadFixedXML {
 							table.content.addEnd(Integer.parseInt(column.getAttributes().getNamedItem("end").getTextContent()));
 						}
 						else
-							error.err(131);
+							error.err(1311);
 					}
 					table.addTitle();
 					

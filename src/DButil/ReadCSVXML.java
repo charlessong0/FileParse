@@ -70,17 +70,17 @@ public class ReadCSVXML {
 		
 		*/
 		setFilepath(filepath);
-		System.out.println(this.filepath);
+		//System.out.println(this.filepath);
 		setFile();
 		setDocumentBuilderFactory();
 		setDocumentBuilder();
 		setDoc(this.db);
 		setRoot(this.doc);
 		
-		System.out.println(root.getNodeName());
+		//System.out.println(root.getNodeName());
 		NodeList files = root.getChildNodes();
-		System.out.println(files.item(5).getNodeName());
-		System.out.println(files.getLength());
+		//System.out.println(files.item(5).getNodeName());
+		//System.out.println(files.getLength());
 		
 		// read file list
 		for (int i = 1; i <= getNum(files.getLength()); i++) {

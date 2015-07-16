@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import dbutil.ReadCSVXML;
 import dbutil.ReadFixedXML;
-import error.Error;
 import objects.FileSample;
+import error.Error;
 
 public class FileTypeMapping {
 	private String csvTemplate;
@@ -17,6 +17,11 @@ public class FileTypeMapping {
 	}
 	
 	public FileTypeMapping(String csvTemplate, String fixedTemplate) {
+		this.csvTemplate = csvTemplate;
+		this.fixedTemplate = fixedTemplate;
+	}
+	
+	public void setTemplate(String csvTemplate, String fixedTemplate) {
 		this.csvTemplate = csvTemplate;
 		this.fixedTemplate = fixedTemplate;
 	}
@@ -41,9 +46,30 @@ public class FileTypeMapping {
 		return fs;
 	}
 	
+	public String washFileName(String fileName) {
+		ReadFixedXML fix = new ReadFixedXML(fixedTemplate);
+		ReadCSVXML csv = new ReadCSVXML(csvTemplate);
+		ArrayList<String> fixTypeList = fix.getFileType();
+		ArrayList<String> csvTypeList = csv.getFileType();
+		for (int i = 0; i < fixTypeList.size(); i++) {
+			if (isInString(fileName, fixTypeList.get(i)) != -1)
+					return fixTypeList.get(i);
+		}
+		
+		for (int i = 0; i < csvTypeList.size(); i++) {
+			if (isInString(fileName, csvTypeList.get(i)) != -1)
+				return csvTypeList.get(i);
+		}
+		return null;
+	}
+	
+	public String getUploadDate(String fileName) {
+		return fileName.substring(0, 5);
+	}
+	
 	
 	/*
-	 * those are private methods
+	 * private methods
 	 */
 	
 	private int isInList(String str, ArrayList<String> list) {
@@ -51,6 +77,20 @@ public class FileTypeMapping {
 		for(int i = 0; i < length; i++) {
 			if (str.equals(list.get(i)))
 				return i;
+		}
+		return -1;
+	}
+	
+	private int isInString(String string, String subString) {
+		int length = subString.length();
+		int totalLength = string.length();
+		if (totalLength < length)
+			return -1;
+		for (int i = 0; i < totalLength - length; i++) {
+			if (string.charAt(i) == subString.charAt(0)) {
+				if (string.substring(i, i + length).equals(subString))
+					return i;
+			}
 		}
 		return -1;
 	}

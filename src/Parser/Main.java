@@ -51,7 +51,7 @@ public class Main {
 			System.out.println(get200.size());
 		}
 		
-		if (true) {
+		if (false) {
 			System.out.println("~~~~~~~~~~~~~~Fixed~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			ReadFixedXML fix = new ReadFixedXML("C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
 			System.out.println(fix.getFileList().get(0).getTable().getTitleList());
@@ -85,7 +85,9 @@ public class Main {
 //		//System.out.println(cft.getTailer());
 //		System.out.println("~~~~~~~~~~~~~~");
 //		System.out.println(cft.createTailerTable());
-		//FileTypeMapping ftm = new FileTypeMapping("C:\\Users\\znsong\\Documents\\My Received Files\\structure.xml", "C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
-		//System.out.println(ftm.getFileSample("GLOBAL_BIN_RANGE").getFileType());
+		FileTypeMapping ftm = new FileTypeMapping("C:\\Users\\znsong\\Documents\\My Received Files\\structure.xml", "C:\\Users\\znsong\\Documents\\My Received Files\\structureFixed.xml");
+		System.out.println(ftm.getFileSample("GLOBAL_BIN_RANGE").getFileType());
+		System.out.println(ftm.washFileName("1231231231PP_TRRA_BIN_RANGE123"));
+		
 	}
 }
