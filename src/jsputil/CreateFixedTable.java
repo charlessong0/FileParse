@@ -100,6 +100,7 @@ public class CreateFixedTable {
 		return sbTable.toString();
 	}
 	
+	
 	public String createHeaderTable() throws Exception {
 		StringBuilder sbTable = new StringBuilder();
 		sbTable.append("<thead><tr>");

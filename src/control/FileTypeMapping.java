@@ -46,6 +46,11 @@ public class FileTypeMapping {
 		return fs;
 	}
 	
+	/**
+	 * wash the file name to the exact string we expect for file type
+	 * @param fileName
+	 * @return
+	 */
 	public String washFileName(String fileName) {
 		ReadFixedXML fix = new ReadFixedXML(fixedTemplate);
 		ReadCSVXML csv = new ReadCSVXML(csvTemplate);
@@ -72,6 +77,13 @@ public class FileTypeMapping {
 	 * private methods
 	 */
 	
+	
+	/**
+	 * if the string is in the list, return the position, else, return -1
+	 * @param str
+	 * @param list
+	 * @return
+	 */
 	private int isInList(String str, ArrayList<String> list) {
 		int length = list.size();
 		for(int i = 0; i < length; i++) {
@@ -81,6 +93,12 @@ public class FileTypeMapping {
 		return -1;
 	}
 	
+	/**
+	 * if the substring is in the string, return the position, else, return -1
+	 * @param string
+	 * @param subString
+	 * @return
+	 */
 	private int isInString(String string, String subString) {
 		int length = subString.length();
 		int totalLength = string.length();
